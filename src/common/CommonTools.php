@@ -3,6 +3,9 @@ namespace panthsoni\tengxun\common;
 
 class CommonTools
 {
+    /**
+     * CommonTools constructor.
+     */
     public function __construct(){}
 
     /**
