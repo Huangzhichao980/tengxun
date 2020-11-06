@@ -36,6 +36,8 @@ class Example {
             'token' => '',   //token码
             'echostr' => '',  //非必填，仅当第一次验证时传入
         ])->setMethod('listen')->setIsSafe(true)->getResult();
+
+        return $res;
     }
 
     /*被动回复用户信息方法*/
@@ -62,5 +64,16 @@ class Example {
                 ]
             ]
         ])->setMethod('replyMessage')->setIsSafe(true)->getResult();
+        
+        exit($res);
+    }
+
+    /*获取access_token*/
+    public function getAccessToken(){
+        $res = self::$developer->setParams([
+            'secret' => ''
+        ])->setMethod('get_base_access_token')->getResult();
+
+        return $res;
     }
 }
