@@ -1,7 +1,7 @@
 <?php
-namespace tencent\wechat\open\website\lib;
+namespace panthsoni\tengxun\weixin\website\lib;
 
-use common\CommonValidate;
+use panthsoni\tengxun\common\CommonValidate;
 
 class SingleValidate extends CommonValidate
 {

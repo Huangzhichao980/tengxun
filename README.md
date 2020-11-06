@@ -14,7 +14,9 @@ use panthsoni\tengxun\weixin\developer\Developer;
 
 class Example {
     /*构造方法*/
-    protect static $method = []
+    protect static $method = [
+        
+    ]
     protect static $developer;
     public function __construct(){
         self::$developer = Developer::init([

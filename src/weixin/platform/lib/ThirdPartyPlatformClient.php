@@ -1,11 +1,9 @@
 <?php
-namespace tencent\wechat\open\platform\lib;
+namespace panthsoni\tengxun\weixin\platform\lib;
 
-use common\CommonCodeMsg;
-use common\CommonException;
-use tencent\wechat\commonality\CommonalityApi;
+use panthsoni\tengxun\common\CommonApi;
 
-class ThirdPartyPlatformClient extends CommonalityApi
+class ThirdPartyPlatformClient extends CommonApi
 {
     /**
      * 微信请求网关
@@ -63,6 +61,7 @@ class ThirdPartyPlatformClient extends CommonalityApi
     public function __construct(array $options=[]){
         /*基本配置参数*/
         self::$options = array_merge(self::$options,$options);
+        self::$openPlatformMethodList = array_merge(self::$openPlatformMethodList,self::$developerMethodList);
     }
 
     /**
@@ -118,15 +117,19 @@ class ThirdPartyPlatformClient extends CommonalityApi
     /**
      * 获取结果
      * @return bool|int|mixed|string
-     * @throws CommonException
+     * @throws \Exception
      */
     public function getResult(){
         /*检测方法*/
-        if (!self::$method) throw new CommonException(CommonCodeMsg::$RequestMethodMissingError);
+        if (!self::$method){
+            throw new \Exception('请求方法缺失',-10015);
+        }
 
         /*检测请求方式是否存在*/
         if (!in_array(self::$method,self::$notRequestUrlMethods)){
-            if (!isset(self::$openPlatformMethodList[self::$method]) || (isset(self::$openPlatformMethodList[self::$method]) && !self::$openPlatformMethodList[self::$method])) throw new CommonException(CommonCodeMsg::$RequestMethodNotAuthError);
+            if (!isset(self::$openPlatformMethodList[self::$method]) || (isset(self::$openPlatformMethodList[self::$method]) && !self::$openPlatformMethodList[self::$method])){
+                throw new \Exception('请求方法未授权',-10025);
+            }
 
             self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$openPlatformMethodList[self::$method]['request_uri'])?self::$openPlatformMethodList[self::$method]['request_uri']:self::$domain.self::$openPlatformMethodList[self::$method]['request_uri'];
         }

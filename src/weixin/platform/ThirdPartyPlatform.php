@@ -1,7 +1,7 @@
 <?php
-namespace tencent\wechat\open\platform;
+namespace panthsoni\tengxun\weixin\platform;
 
-use tencent\wechat\open\platform\lib\ThirdPartyPlatformClient;
+use panthsoni\tengxun\weixin\platform\lib\ThirdPartyPlatformClient;
 
 class ThirdPartyPlatform
 {

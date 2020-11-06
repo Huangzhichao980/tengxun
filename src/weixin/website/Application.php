@@ -1,7 +1,5 @@
 <?php
-namespace tencent\wechat\open\website;
-
-use tencent\wechat\open\website\lib\ApplicationClient;
+namespace panthsoni\tengxun\weixin\website;
 
 class Application
 {

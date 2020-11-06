@@ -1,9 +1,9 @@
 <?php
-namespace tencent\wechat\open\website\lib;
+namespace panthsoni\tengxun\weixin\website\lib;
 
-use tencent\wechat\commonality\CommonalityTools;
+use panthsoni\tengxun\common\CommonTools;
 
-class Tools extends CommonalityTools
+class Tools extends CommonTools
 {
     /**
      * Get参数替换

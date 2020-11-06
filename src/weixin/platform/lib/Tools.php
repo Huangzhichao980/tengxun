@@ -1,13 +1,10 @@
 <?php
-namespace tencent\wechat\open\platform\lib;
+namespace panthsoni\tengxun\weixin\platform\lib;
 
-use common\CommonCodeMsg;
-use common\CommonException;
-use common\CommonLog;
-use tencent\wechat\commonality\CommonalityTools;
-use tencent\wechat\commonality\Cryption;
+use panthsoni\tengxun\common\CommonCryption;
+use panthsoni\tengxun\common\CommonTools;
 
-class Tools extends CommonalityTools
+class Tools extends CommonTools
 {
     protected static $paramsReplaceList = [
         'component_appid' => '[component_appid]',
@@ -69,7 +66,7 @@ class Tools extends CommonalityTools
      * 监听开放平台
      * @param $requestParams
      * @return int|mixed
-     * @throws CommonException
+     * @throws \Exception
      */
     public static function listen($requestParams){
         /*获取加密的消息体*/
@@ -77,8 +74,7 @@ class Tools extends CommonalityTools
 
         /*检测消息加解密类型*/
         if ($requestParams['encrypt_type']!='aes'){
-            CommonLog::write('消息加密类型有误');
-            throw new CommonException(CommonCodeMsg::$EncryptTypeError);
+            throw new \Exception('encrypt_type缺失',-10029);
         }
 
         return self::decryptMsg($requestParams);
@@ -101,7 +97,7 @@ class Tools extends CommonalityTools
      * 回复用户消息
      * @param $requestParamsList
      * @return int|string
-     * @throws CommonException
+     * @throws \Exception
      */
     public static function replyMessage($requestParamsList){
         Tools::validate($requestParamsList,new SingleValidate(),$requestParamsList['msg_type']);
@@ -110,8 +106,7 @@ class Tools extends CommonalityTools
         if ($requestParamsList['msg_type'] == 'news'){
             /*处理文章个数和内容个数是否对应*/
             if ($requestParamsList['article_counts'] != count($requestParamsList['article_content'])){
-                CommonLog::write('文章个数与文章内容设置的个数不一致');
-                throw new CommonException(CommonCodeMsg::$NewsCountsNotSameError);
+                throw new \Exception('文章个数与文章内容设置的个数不一致',-10040);
             }
 
             /*处理参数*/
@@ -125,7 +120,7 @@ class Tools extends CommonalityTools
 
         /*加密处理*/
         $encryptMsg = "";
-        $cryptGraph = new Cryption($requestParamsList['token'],$requestParamsList['encoding_aes_key'],$requestParamsList['component_appid']);
+        $cryptGraph = new CommonCryption($requestParamsList['token'],$requestParamsList['encoding_aes_key'],$requestParamsList['component_appid']);
         $errorCode = $cryptGraph->encryptMsg($content,time(),'panthsoni',$encryptMsg);
         if ($errorCode !=0) return $errorCode;
 

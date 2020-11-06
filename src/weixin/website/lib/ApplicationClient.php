@@ -1,11 +1,9 @@
 <?php
-namespace tencent\wechat\open\website\lib;
+namespace panthsoni\tengxun\weixin\website\lib;
 
-use common\CommonCodeMsg;
-use common\CommonException;
-use tencent\wechat\commonality\CommonalityApi;
+use panthsoni\tengxun\common\CommonApi;
 
-class ApplicationClient extends CommonalityApi
+class ApplicationClient extends CommonApi
 {
     /**
      * 配置参数
@@ -117,15 +115,19 @@ class ApplicationClient extends CommonalityApi
     /**
      * 获取结果
      * @return bool|mixed
-     * @throws CommonException
+     * @throws \Exception
      */
     public function getResult(){
         /*检测方法*/
-        if (!self::$method) throw new CommonException(CommonCodeMsg::$RequestMethodMissingError);
+        if (!self::$method){
+            throw new \Exception('请求方法缺失',-10015);
+        }
 
         /*检测请求方式是否存在*/
         if (!in_array(self::$method,self::$notRequestUrlMethods)){
-            if (!isset(self::$openWebsiteMethodList[self::$method]) || (isset(self::$openWebsiteMethodList[self::$method]) && !self::$openWebsiteMethodList[self::$method])) throw new CommonException(CommonCodeMsg::$RequestMethodNotAuthError);
+            if (!isset(self::$openWebsiteMethodList[self::$method]) || (isset(self::$openWebsiteMethodList[self::$method]) && !self::$openWebsiteMethodList[self::$method])){
+                throw new \Exception('请求方法未授权',-10025);
+            }
 
             self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$openWebsiteMethodList[self::$method]['request_uri'])?self::$openWebsiteMethodList[self::$method]['request_uri']:self::$domain.self::$openWebsiteMethodList[self::$method]['request_uri'];
         }

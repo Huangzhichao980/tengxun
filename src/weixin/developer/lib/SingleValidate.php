@@ -62,49 +62,152 @@ class SingleValidate extends CommonValidate
 
     public $scene = [
         /*获取基础access_token*/
-        'get_base_access_token'=>['appid'=>'require|length:0,50','secret'=>'require|length:0,50'],
+        'get_base_access_token'=>[
+            'appid'=>'require|length:0,50',
+            'secret'=>'require|length:0,50'
+        ],
 
         /*菜单接口*/
-        'create_menu'=>['access_token'=>'require|length:0,255','button'=>'require|length:0,100'],
-        'get_menu'=>['access_token'=>'require|length:0,255'],
-        'del_menu'=>['access_token'=>'require|length:0,255'],
-        'create_self_menu'=>['access_token'=>'require|length:0,255','button'=>'require|length:0,100'],
-        'del_self_menu'=>['access_token'=>'require|length:0,255','menuid'=>'require|length:0,20'],
-        'get_self_menu'=>['access_token'=>'require|length:0,255'],
+        'create_menu'=>[
+            'access_token'=>'require|length:0,255',
+            'button'=>'require|length:0,100'
+        ],
+        'get_menu'=>[
+            'access_token'=>'require|length:0,255'
+        ],
+        'del_menu'=>[
+            'access_token'=>'require|length:0,255'
+        ],
+        'create_self_menu'=>[
+            'access_token'=>'require|length:0,255',
+            'button'=>'require|length:0,100'
+        ],
+        'del_self_menu'=>[
+            'access_token'=>'require|length:0,255',
+            'menuid'=>'require|length:0,20'
+        ],
+        'get_self_menu'=>[
+            'access_token'=>'require|length:0,255'
+        ],
 
         /*客服接口*/
-        'create_account'=>['access_token'=>'require|length:0,255','kf_account'=>'require|length:0,50','nickname'=>'require|length:0,50','password'=>'require|length:0,50'],
-        'update_account'=>['access_token'=>'require|length:0,255','kf_account'=>'require|length:0,50','nickname'=>'require|length:0,50','password'=>'require|length:0,50'],
-        'del_account'=>['access_token'=>'require|length:0,255','kf_account'=>'require|length:0,50','nickname'=>'require|length:0,50','password'=>'require|length:0,50'],
-        'upload_account'=>['access_token'=>'require|length:0,255','kf_account'=>'require|length:0,50'],
-        'get_account'=>['access_token'=>'require|length:0,255'],
-        'send_account_message'=>['access_token'=>'require|length:0,255','account_message_content'=>'require|length:0,255'],
-        'typing_account'=>['access_token'=>'require|length:0,255','touser'=>'require|length:0,32','command'=>'require|length:0,15'],
+        'create_account'=>[
+            'access_token'=>'require|length:0,255',
+            'kf_account'=>'require|length:0,50',
+            'nickname'=>'require|length:0,50',
+            'password'=>'require|length:0,50'
+        ],
+        'update_account'=>[
+            'access_token'=>'require|length:0,255',
+            'kf_account'=>'require|length:0,50',
+            'nickname'=>'require|length:0,50',
+            'password'=>'require|length:0,50'
+        ],
+        'del_account'=>[
+            'access_token'=>'require|length:0,255',
+            'kf_account'=>'require|length:0,50',
+            'nickname'=>'require|length:0,50',
+            'password'=>'require|length:0,50'
+        ],
+        'upload_account'=>[
+            'access_token'=>'require|length:0,255',
+            'kf_account'=>'require|length:0,50'
+        ],
+        'get_account'=>[
+            'access_token'=>'require|length:0,255'
+        ],
+        'send_account_message'=>[
+            'access_token'=>'require|length:0,255',
+            'account_message_content'=>'require|length:0,255'
+        ],
+        'typing_account'=>[
+            'access_token'=>'require|length:0,255',
+            'touser'=>'require|length:0,32',
+            'command'=>'require|length:0,15'
+        ],
 
         /*模板消息*/
-        'set_industry'=>['access_token'=>'require|length:0,255','industry_id1'=>'require|number','industry_id2'=>'require|number'],
-        'get_industry'=>['access_token'=>'require|length:0,255'],
-        'add_template'=>['access_token'=>'require|length:0,255','template_id_short'=>'require|length:0,50'],
-        'get_template'=>['access_token'=>'require|length:0,255'],
-        'del_template'=>['access_token'=>'require|length:0,255','template_id'=>'require|length:0,50'],
-        'send_template_message'=>['access_token'=>'require|length:0,255','template_message_content'=>'require|length:0,255'],
+        'set_industry'=>[
+            'access_token'=>'require|length:0,255',
+            'industry_id1'=>'require|number',
+            'industry_id2'=>'require|number'
+        ],
+        'get_industry'=>[
+            'access_token'=>'require|length:0,255'
+        ],
+        'add_template'=>[
+            'access_token'=>'require|length:0,255',
+            'template_id_short'=>'require|length:0,50'
+        ],
+        'get_template'=>[
+            'access_token'=>'require|length:0,255'
+        ],
+        'del_template'=>[
+            'access_token'=>'require|length:0,255',
+            'template_id'=>'require|length:0,50'
+        ],
+        'send_template_message'=>[
+            'access_token'=>'require|length:0,255',
+            'template_message_content'=>'require|length:0,255'
+        ],
 
         /*网页授权*/
-        'user_authorize'=>['appid'=>'require|length:0,20','redirect_uri'=>'require|length:0,255','scope'=>'require|in:snsapi_base,snsapi_userinfo','state'=>'length:0,128'],
-        'get_authorize_access_token'=>['appid'=>'require|length:0,20','secret'=>'require|length:0,50','code'=>'require|length:0,50'],
-        'refresh_authorize_access_token'=>['appid'=>'require|length:0,20','refresh_token'=>'require|length:0,100'],
-        'get_user_info'=>['access_token'=>'require|length:0,255','openid'=>'require|length:0,50','lang'=>'require|length:0,10',],
-        'check_auth'=>['access_token'=>'require|length:0,255','openid'=>'require|length:0,50'],
+        'user_authorize'=>[
+            'appid'=>'require|length:0,20',
+            'redirect_uri'=>'require|length:0,255',
+            'scope'=>'require|in:snsapi_base,snsapi_userinfo',
+            'state'=>'length:0,128'
+        ],
+        'get_authorize_access_token'=>[
+            'appid'=>'require|length:0,20',
+            'secret'=>'require|length:0,50',
+            'code'=>'require|length:0,50'
+        ],
+        'refresh_authorize_access_token'=>[
+            'appid'=>'require|length:0,20',
+            'refresh_token'=>'require|length:0,100'
+        ],
+        'get_user_info'=>[
+            'access_token'=>'require|length:0,255',
+            'openid'=>'require|length:0,50',
+            'lang'=>'require|length:0,10'
+        ],
+        'check_auth'=>[
+            'access_token'=>'require|length:0,255',
+            'openid'=>'require|length:0,50'
+        ],
 
         /*用户管理*/
-        'create_tag'=>['access_token'=>'require|length:0,255','tag'=>'require|length:0,20'],
-        'update_tag'=>['access_token'=>'require|length:0,255','tag'=>'require|length:0,20'],
-        'del_tag'=>['access_token'=>'require|length:0,255','tag'=>'require|length:0,20'],
-        'get_tag_openid'=>['access_token'=>'require|length:0,255','tagid'=>'require|number','next_openid'=>'require|length:0,50'],
+        'create_tag'=>[
+            'access_token'=>'require|length:0,255',
+            'tag'=>'require|length:0,20'
+        ],
+        'update_tag'=>[
+            'access_token'=>'require|length:0,255',
+            'tag'=>'require|length:0,20'
+        ],
+        'del_tag'=>[
+            'access_token'=>'require|length:0,255',
+            'tag'=>'require|length:0,20'
+        ],
+        'get_tag_openid'=>[
+            'access_token'=>'require|length:0,255',
+            'tagid'=>'require|number',
+            'next_openid'=>'require|length:0,50'
+        ],
 
         /*帐号管理*/
-        'qrcode_create'=>['access_token'=>'require|length:0,255','expire_seconds'=>'require|number','action_name'=>'require|in:QR_SCENE,QR_STR_SCENE','action_info'=>'require|array'],
-        'short_url'=>['access_token'=>'require|length:0,255','action'=>'require|in:long2short','long_url'=>'require|length:0,255'],
+        'qrcode_create'=>[
+            'access_token'=>'require|length:0,255',
+            'expire_seconds'=>'require|number',
+            'action_name'=>'require|in:QR_SCENE,QR_STR_SCENE',
+            'action_info'=>'require|array'
+        ],
+        'short_url'=>[
+            'access_token'=>'require|length:0,255',
+            'action'=>'require|in:long2short',
+            'long_url'=>'require|length:0,255'
+        ],
 
         /*监听*/
         'listen'=>[
@@ -121,13 +224,34 @@ class SingleValidate extends CommonValidate
             'from_user_name'=>'require|length:0,50',
             'token','appid','encoding_aes_key'
         ],
-        'text'=>['content'=>'require|length:0,255'],
-        'voice'=>['media_id'=>'require|length:0,50'],
-        'video'=>['media_id'=>'require|length:0,50','title'=>'require|length:0,50','description'=>'require|length:0,255'],
-        'music'=>['media_id'=>'require|length:0,50','title','description','music_url','hq_music_url'],
-        'image'=>['media_id'=>'require|length:0,50'],
-        'news'=>['article_counts'=>'require|between:1,8','article_content'=>'require|array'],
-        'news_item'=>['title'=>'require|length:0,50','description'=>'require|length:0,50','pic_url'=>'require|length:0,255','url'=>'require|length:0,255',],
+        'text'=>[
+            'content'=>'require|length:0,255'
+        ],
+        'voice'=>[
+            'media_id'=>'require|length:0,50'
+        ],
+        'video'=>[
+            'media_id'=>'require|length:0,50',
+            'title'=>'require|length:0,50',
+            'description'=>'require|length:0,255'
+        ],
+        'music'=>[
+            'media_id'=>'require|length:0,50',
+            'title','description','music_url','hq_music_url'
+        ],
+        'image'=>[
+            'media_id'=>'require|length:0,50'
+        ],
+        'news'=>[
+            'article_counts'=>'require|between:1,8',
+            'article_content'=>'require|array'
+        ],
+        'news_item'=>[
+            'title'=>'require|length:0,50',
+            'description'=>'require|length:0,50',
+            'pic_url'=>'require|length:0,255',
+            'url'=>'require|length:0,255'
+        ],
         'transfer_customer_service'=>['kf_account']
     ];
 }
