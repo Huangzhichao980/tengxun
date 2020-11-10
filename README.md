@@ -76,4 +76,15 @@ class Example {
 
         return $res;
     }
+
+    /*菜单服务，相关方法有create_menu,get_menu,del_menu,create_self_menu,del_self_menu,get_self_menu*/
+    public function menu(){
+        $res = self::$developer->setParams([
+            'access_token' => '',
+            'button' => '',
+            'menuid' => ''
+        ])->setMethod('create_menu')->getResult();
+
+        return $res;
+    }
 }

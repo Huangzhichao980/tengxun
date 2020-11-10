@@ -7,8 +7,8 @@ class SingleValidate extends CommonValidate
 {
     protected $rule = [
         'appid|小程序appid' => 'length:0,50',
-        'secret|小程序密钥' => 'length:0,50',
-        'js_code|登录时获取的 code'=>'length:0,50',
+        'secret|小程序密钥secret' => 'length:0,50',
+        'js_code|登录时获取的js_code'=>'length:0,50',
         'access_token|access_token' => 'length:0,255',
         'openid|用户openid'=>'length:0,50',
     ];

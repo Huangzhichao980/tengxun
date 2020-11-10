@@ -7,17 +7,17 @@ class SingleValidate extends CommonValidate
 {
     protected $rule = [
         'appid|公众号appid' => 'length:0,50',
-        'secret|公众号密钥' => 'length:0,50',
+        'secret|公众号密钥secret' => 'length:0,50',
         'code|授权code'=>'length:0,50',
-        'refresh_token|刷新token' => 'length:0,100',
+        'refresh_token|刷新refresh_token' => 'length:0,100',
         'openid|用户openid' => 'length:0,32',
         'access_token|access_token' => 'length:0,100',
-        'touser|发送用户openid' => 'length:0,32',
-        'template_id|模板id' => 'length:0,50',
-        'url|跳转链接' => 'length:0,255',
-        'scene|订阅场景值' => 'length:0,50',
-        'title|标题' => 'length:0,50',
-        'data|数据' => 'length:0,255',
+        'touser|touser，发送用户openid' => 'length:0,32',
+        'template_id|模板template_id' => 'length:0,50',
+        'url|跳转链接url' => 'length:0,255',
+        'scene|订阅场景值scene' => 'length:0,50',
+        'title|标题title' => 'length:0,50',
+        'data|数据data' => 'length:0,255',
     ];
 
     public $scene = [
