@@ -92,34 +92,6 @@ class CommonApi
         ],
 
         /**
-         * 模板消息
-         */
-        'add_template' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/wxopen/template/add?access_token=[access_token]'
-        ],
-        'delete_template' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/wxopen/template/del?access_token=[access_token]'
-        ],
-        'get_template_library_by_id' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/wxopen/template/library/get?access_token=[access_token]'
-        ],
-        'get_template_library_list' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/wxopen/template/library/list?access_token=[access_token]'
-        ],
-        'get_template_list' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/wxopen/template/list?access_token=[access_token]'
-        ],
-        'send_template' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/message/wxopen/template/send?access_token=[access_token]'
-        ],
-
-        /**
          * 统一服务消息
          */
         'uniform_send' => [
