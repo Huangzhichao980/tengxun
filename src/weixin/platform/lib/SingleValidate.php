@@ -165,8 +165,8 @@ class SingleValidate extends CommonValidate
             'component_appid'=>'require|length:0,20',
             'appid'=>'require|length:0,20',
             'scope'=>'require|in:snsapi_base,snsapi_userinfo',
-            'state'=>'require|length:0,128',
             'redirect_uri'=>'require|length:0,255',
+            'state'
         ],
 
         'get_web_auth_access_token' => [
