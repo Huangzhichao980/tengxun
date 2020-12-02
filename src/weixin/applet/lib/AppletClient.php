@@ -41,6 +41,7 @@ class AppletClient extends CommonApi
      * @var string
      */
     protected static $requestUrl;
+
     /**
      * 不需要请求URL的方法
      * @var array
@@ -131,31 +132,23 @@ class AppletClient extends CommonApi
 
     /**
      * 获取结果
-     * @return bool|int|mixed|string
-     * @throws CommonException
+     * @return bool|mixed
+     * @throws \Exception
      */
     public function getResult(){
         /*检测方法*/
         if (!self::$method) throw new \Exception('请求方法缺失',-10015);
 
         /*检测请求方式是否存在*/
-        if (!in_array(self::$method,self::$notRequestUrlMethods)){
-            if (!isset(self::$appletMethodList[self::$method]) || (isset(self::$appletMethodList[self::$method]) && !self::$appletMethodList[self::$method])){
-                throw new \Exception('请求方法未授权',-10025);
-            }
-
-            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$appletMethodList[self::$method]['request_uri'])?self::$appletMethodList[self::$method]['request_uri']:self::$domain.self::$appletMethodList[self::$method]['request_uri'];
+        if (!isset(self::$appletMethodList[self::$method]) || (isset(self::$appletMethodList[self::$method]) && !self::$appletMethodList[self::$method])){
+            throw new \Exception('请求方法未授权',-10025);
         }
+
+        self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$appletMethodList[self::$method]['request_uri'])?self::$appletMethodList[self::$method]['request_uri']:self::$domain.self::$appletMethodList[self::$method]['request_uri'];
 
         /*参数验证*/
         $originalRequestParamsList = array_merge(self::$options,self::$params,self::$bizParams);
         $requestParamsList = Tools::validate($originalRequestParamsList,new SingleValidate(),self::$method);
-
-        /*监听方法*/
-        if (self::$method === 'listen') return Tools::listen($requestParamsList,self::$isSafe);
-
-        /*回复用户消息*/
-        if (self::$method === 'replyMessage') return Tools::replyMessage($originalRequestParamsList,self::$isSafe);
 
         return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$appletMethodList[self::$method]['request_way'],self::$isBackUrl);
     }
