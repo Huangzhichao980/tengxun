@@ -43,12 +43,6 @@ class AppletClient extends CommonApi
     protected static $requestUrl;
 
     /**
-     * 不需要请求URL的方法
-     * @var array
-     */
-    protected static $notRequestUrlMethods = ['listen','replyMessage'];
-
-    /**
      * 是否安全模式，默认为明文模式
      * @var bool
      */
