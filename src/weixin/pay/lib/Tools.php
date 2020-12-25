@@ -60,11 +60,11 @@ class Tools extends CommonTools
     /**
      * 生成签名
      * @param $params
-     * @param $key
+     * @param $keyValue
      * @param string $signType
      * @return string
      */
-    private static function makePaySign($params,$key,$signType='MD5'){
+    private static function makePaySign($params,$keyValue,$signType='MD5'){
         /*参数键值按字典排序*/
         $keyValueArr = [];
         foreach ($params as $key=>$val){
@@ -84,12 +84,12 @@ class Tools extends CommonTools
         }
 
         /*拼接api密钥*/
-        $keyString = "{$keyString}&key={$key}";
+        $keyString = "{$keyString}&key={$keyValue}";
 
         /*md5或者HMAC-SHA256签名*/
         $sign = strtoupper(md5($keyString));
         if ($signType == 'HMAC-SHA256'){
-            $sign = strtoupper(hash_hmac('sha256',$keyString,$key));
+            $sign = strtoupper(hash_hmac('sha256',$keyString,$keyValue));
         }
 
         return $sign;
