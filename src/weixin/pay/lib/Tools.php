@@ -20,10 +20,11 @@ class Tools extends CommonTools
      * @param $proxyHost
      * @param $proxyPort
      * @param $method
+     * @param string $signType
      * @return mixed
      * @throws \Exception
      */
-    public static function buildRequestResult($requestUrl,$requestParams,$key,$isNeedCert,$sslCertPath,$sslKeyPath,$proxyHost,$proxyPort,$method){
+    public static function buildRequestResult($requestUrl,$requestParams,$key,$isNeedCert,$sslCertPath,$sslKeyPath,$proxyHost,$proxyPort,$method,$signType = 'MD5'){
         /*针对jsapi和Navicat支付方式*/
         if ($method == 'unified_order'){
             if ($requestParams['trade_type'] == 'JSAPI' && !isset($requestParams['openid'])){
@@ -47,7 +48,7 @@ class Tools extends CommonTools
         }
 
         /*生成支付签名*/
-        $requestParams['sign'] = self::makePaySign($requestParams,$key,$requestParams['sign_type']);
+        $requestParams['sign'] = self::makePaySign($requestParams,$key,$signType);
 
         /*生成xml字符串*/
         $xmlString = self::buildXmlParams($requestParams);
@@ -130,7 +131,8 @@ class Tools extends CommonTools
     private static function payHttpCurl($params,$xml,$url,$isNeedCert,$sslCertPath,$sslKeyPath,$proxyHost,$proxyPort,$second=30){
         $ch = curl_init();
         $curlVersion = curl_version();
-        $userAgent = "WXPaySDK/3.0.9 (" . PHP_OS . ") PHP/" . PHP_VERSION . " CURL/" . $curlVersion['version'] . " " . $params['mch_id'];
+        $mchId = isset($params['mch_id'])?$params['mch_id']:$params['mchid'];
+        $userAgent = "WXPaySDK/3.0.9 (" . PHP_OS . ") PHP/" . PHP_VERSION . " CURL/" . $curlVersion['version'] . " " . $mchId;
 
         /*如果有配置代理这里就设置代理*/
         if ($proxyHost != "0.0.0.0" && $proxyPort != 0) {

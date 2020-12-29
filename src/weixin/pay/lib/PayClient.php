@@ -6,6 +6,12 @@ use panthsoni\tengxun\common\CommonApi;
 class PayClient extends CommonApi
 {
     /**
+     * 签名类型
+     * @var array
+     */
+    protected static $signType = 'MD5';
+
+    /**
      * 基础配置参数
      * @var array
      */
@@ -135,6 +141,7 @@ class PayClient extends CommonApi
      */
     public function setSignType($signType='MD5'){
         self::$options = array_merge(self::$options,['sign_type'=>$signType]);
+        self::$signType = $signType;
         return $this;
     }
 
@@ -222,6 +229,6 @@ class PayClient extends CommonApi
             throw new \Exception('证书路径缺失',-10031);
         }
 
-        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$key,self::$isNeedCert,self::$sslCertPath,self::$sslKeyPath,self::$proxyHost,self::$proxyPort,self::$method);
+        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$key,self::$isNeedCert,self::$sslCertPath,self::$sslKeyPath,self::$proxyHost,self::$proxyPort,self::$method,self::$signType);
     }
 }
