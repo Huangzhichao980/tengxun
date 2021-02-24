@@ -25,12 +25,12 @@ class SingleValidate extends CommonValidate
     ];
 
     public $scene = [
-        'login' => [
+        'applet_login' => [
             'appid'=>'require|length:0,50',
             'secret'=>'require|length:0,50',
             'js_code'=>'require|length:0,50'
         ],
-        'get_user_info' => [
+        'applet_get_user_info' => [
             'access_token'=>'require|length:0,255',
             'openid'=>'require|length:0,50'
         ],

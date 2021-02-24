@@ -6,24 +6,6 @@ use panthsoni\tengxun\common\CommonTools;
 
 class Tools extends CommonTools
 {
-    protected static $paramsReplaceList = [
-        'component_appid' => '[component_appid]',
-        'pre_auth_code' => '[pre_auth_code]',
-        'redirect_uri' => '[redirect_uri]',
-        'auth_type' => '[auth_type]',
-        'component_access_token' => '[component_access_token]',
-        'access_token' => '[access_token]',
-        'state' => '[state]',
-        'code' => '[code]',
-        'refresh_token' => '[refresh_token]',
-        'openid' => '[openid]',
-        'lang' => '[lang]',
-        'appid' => '[appid]',
-        'scope' => '[scope]',
-    ];
-
-    protected static $returnRequestUrl = ['get_auth_pc_url','get_auth_mobile_url','account_web_auth'];
-
     public function __construct(){
         parent::__construct();
     }

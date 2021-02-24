@@ -4,81 +4,16 @@ namespace panthsoni\tengxun\common;
 
 class CommonApi
 {
-    /**
-     * 请求方法列表（小程序）
-     * @var array
-     */
-    protected static $appletMethodList = [
-        /*登录*/
-        'login' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/jscode2session?appid=[appid]&secret=[secret]&js_code=[js_code]&grant_type=authorization_code'
-        ],
-
-        /*获取用户信息*/
-        'get_user_info' => [
-            'request_way' => 'GET',
-            'request_uri' => '/wxa/getpaidunionid?access_token=[access_token]&openid=[openid]'
-        ],
-
+    protected static $methodList = [
+        /**
+         * 公共接口
+         */
         /*获取access_token*/
         'get_access_token' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/token?grant_type=client_credential&appid=[appid]&secret=[secret]'
         ],
-
-        /**
-         * 数据分析
-         */
-        'get_daily_retain' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappiddailyretaininfo?access_token=[access_token]'
-        ],
-        'get_monthly_retain' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappidmonthlyretaininfo?access_token=[access_token]'
-        ],
-        'get_weekly_retain' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappidweeklyretaininfo?access_token=[access_token]'
-        ],
-        'get_daily_summary' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappiddailysummarytrend?access_token=[access_token]'
-        ],
-        'get_daily_visit_trend' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappiddailyvisittrend?access_token=[access_token]'
-        ],
-        'get_monthly_visit_trend' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappidmonthlyvisittrend?access_token=[access_token]'
-        ],
-        'get_weekly_visit_trend' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappidweeklyvisittrend?access_token=[access_token]'
-        ],
-        'get_user_portrait' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappiduserportrait?access_token=[access_token]'
-        ],
-        'get_visit_distribution' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappidvisitdistribution?access_token=[access_token]'
-        ],
-        'get_visit_page' => [
-            'request_way' => 'POST',
-            'request_uri' => '/datacube/getweanalysisappidvisitpage?access_token=[access_token]'
-        ],
-
-        /**
-         * 客服消息
-         */
-        'get_temp_media' => [
-            'request_way' => 'GET',
-            'request_uri' => '/cgi-bin/media/get?access_token=[access_token]&media_id=[media_id]'
-        ],
-        'send' => [
+        'send_message' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/message/custom/send?access_token=[access_token]'
         ],
@@ -86,18 +21,99 @@ class CommonApi
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/message/custom/typing?access_token=[access_token]'
         ],
-        'upload_temp_media' => [
+
+        /**
+         * 小程序相关接口
+         */
+        /*登录*/
+        'applet_login' => [
+            'request_way' => 'GET',
+            'request_uri' => '/sns/jscode2session?appid=[appid]&secret=[secret]&js_code=[js_code]&grant_type=authorization_code'
+        ],
+        /*获取用户信息*/
+        'applet_get_user_info' => [
+            'request_way' => 'GET',
+            'request_uri' => '/wxa/getpaidunionid?access_token=[access_token]&openid=[openid]'
+        ],
+        'applet_get_daily_retain' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappiddailyretaininfo?access_token=[access_token]'
+        ],
+        'applet_get_monthly_retain' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappidmonthlyretaininfo?access_token=[access_token]'
+        ],
+        'applet_get_weekly_retain' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappidweeklyretaininfo?access_token=[access_token]'
+        ],
+        'applet_get_daily_summary' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappiddailysummarytrend?access_token=[access_token]'
+        ],
+        'applet_get_daily_visit_trend' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappiddailyvisittrend?access_token=[access_token]'
+        ],
+        'applet_get_monthly_visit_trend' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappidmonthlyvisittrend?access_token=[access_token]'
+        ],
+        'applet_get_weekly_visit_trend' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappidweeklyvisittrend?access_token=[access_token]'
+        ],
+        'applet_get_user_portrait' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappiduserportrait?access_token=[access_token]'
+        ],
+        'applet_get_visit_distribution' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappidvisitdistribution?access_token=[access_token]'
+        ],
+        'applet_get_visit_page' => [
+            'request_way' => 'POST',
+            'request_uri' => '/datacube/getweanalysisappidvisitpage?access_token=[access_token]'
+        ],
+        'applet_get_temp_media' => [
+            'request_way' => 'GET',
+            'request_uri' => '/cgi-bin/media/get?access_token=[access_token]&media_id=[media_id]'
+        ],
+        'applet_upload_temp_media' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/media/upload?access_token=[access_token]&type=[type]'
         ],
+        'applet_uniform_send' => [
+            'request_way' => 'POST',
+            'request_uri' => '/cgi-bin/message/wxopen/template/uniform_send?access_token=[access_token]'
+        ],
+    ];
+
+    /**
+     * 请求方法列表（小程序）
+     * @var array
+     */
+    protected static $appletMethodList = [
+
+
+
+
+        /**
+         * 数据分析
+         */
+
+
+        /**
+         * 客服消息
+         */
+
+
+
 
         /**
          * 统一服务消息
          */
-        'uniform_send' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/message/wxopen/template/uniform_send?access_token=[access_token]'
-        ],
+
 
         /**
          * 动态消息
@@ -213,10 +229,6 @@ class CommonApi
      * @var array
      */
     protected static $developerMethodList = [
-        'get_base_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/cgi-bin/token?grant_type=client_credential&appid=[appid]&secret=[secret]'
-        ],
 
         /*菜单*/
         'create_menu' => [
@@ -264,14 +276,6 @@ class CommonApi
         'get_account' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/customservice/getkflist?access_token=[access_token]'
-        ],
-        'send_account_message' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/message/custom/send?access_token=[access_token]'
-        ],
-        'typing_account' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/message/custom/typing?access_token=[access_token]'
         ],
 
         /*模板消息*/

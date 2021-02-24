@@ -7,21 +7,6 @@ use panthsoni\tengxun\common\CommonTools;
 class Tools extends CommonTools
 {
     /**
-     * Get参数替换
-     * @var array
-     */
-    protected static $paramsReplaceList = [
-        'corpid' => '[corpid]',
-        'corpsecret' => '[corpsecret]',
-        'access_token' => '[access_token]',
-        'userid' => '[userid]',
-        'department_id' => '[department_id]',
-        'fetch_child' => '[fetch_child]',
-        'size_type' => '[size_type]',
-        'id' => '[id]',
-    ];
-
-    /**
      * 实例化
      * Tools constructor.
      */

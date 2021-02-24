@@ -4,6 +4,35 @@ namespace panthsoni\tengxun\common;
 class CommonTools
 {
     /**
+     * Get参数替换
+     * @var array
+     */
+    protected static $paramsReplaceList = [
+        'appid' => '[appid]',
+        'secret' => '[secret]',
+        'code' => '[code]',
+        'refresh_token' => '[refresh_token]',
+        'openid' => '[openid]',
+        'access_token' => '[access_token]',
+        'redirect_uri' => '[redirect_uri]',
+        'scope' => '[scope]',
+        'state' => '[state]',
+        'lang' => '[lang]',
+        'component_appid' => '[component_appid]',
+        'pre_auth_code' => '[pre_auth_code]',
+        'auth_type' => '[auth_type]',
+        'component_access_token' => '[component_access_token]',
+        'corpid' => '[corpid]',
+        'corpsecret' => '[corpsecret]',
+        'userid' => '[userid]',
+        'department_id' => '[department_id]',
+        'fetch_child' => '[fetch_child]',
+        'size_type' => '[size_type]',
+        'id' => '[id]',
+        'js_code' => '[js_code]',
+    ];
+
+    /**
      * CommonTools constructor.
      */
     public function __construct(){}

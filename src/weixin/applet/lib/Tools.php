@@ -5,23 +5,6 @@ use panthsoni\tengxun\common\CommonTools;
 
 class Tools extends CommonTools
 {
-    /**
-     * Get参数替换
-     * @var array
-     */
-    protected static $paramsReplaceList = [
-        'appid' => '[appid]',
-        'secret' => '[secret]',
-        'js_code' => '[js_code]',
-        'access_token' => '[access_token]',
-        'openid' => '[openid]',
-        'redirect_uri' => '[redirect_uri]',
-        'scope' => '[scope]',
-        'state' => '[state]',
-        'refresh_token' => '[refresh_token]',
-        'lang' => '[lang]'
-    ];
-
     public function __construct(){
         parent::__construct();
     }
