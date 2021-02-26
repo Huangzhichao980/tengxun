@@ -2,6 +2,7 @@
 namespace panthsoni\tengxun\weixin\applet\lib;
 
 use panthsoni\tengxun\common\CommonApi;
+use panthsoni\tengxun\common\SingleValidate;
 
 class AppletClient extends CommonApi
 {
@@ -134,16 +135,16 @@ class AppletClient extends CommonApi
         if (!self::$method) throw new \Exception('请求方法缺失',-10015);
 
         /*检测请求方式是否存在*/
-        if (!isset(self::$appletMethodList[self::$method]) || (isset(self::$appletMethodList[self::$method]) && !self::$appletMethodList[self::$method])){
+        if (!isset(self::$methodList[self::$method]) || (isset(self::$methodList[self::$method]) && !self::$methodList[self::$method])){
             throw new \Exception('请求方法未授权',-10025);
         }
 
-        self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$appletMethodList[self::$method]['request_uri'])?self::$appletMethodList[self::$method]['request_uri']:self::$domain.self::$appletMethodList[self::$method]['request_uri'];
+        self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$methodList[self::$method]['request_uri'])?self::$methodList[self::$method]['request_uri']:self::$domain.self::$methodList[self::$method]['request_uri'];
 
         /*参数验证*/
         $originalRequestParamsList = array_merge(self::$options,self::$params,self::$bizParams);
         $requestParamsList = Tools::validate($originalRequestParamsList,new SingleValidate(),self::$method);
 
-        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$appletMethodList[self::$method]['request_way'],self::$isBackUrl);
+        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$methodList[self::$method]['request_way'],self::$isBackUrl);
     }
 }

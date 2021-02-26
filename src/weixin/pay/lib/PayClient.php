@@ -2,6 +2,7 @@
 namespace panthsoni\tengxun\weixin\pay\lib;
 
 use panthsoni\tengxun\common\CommonApi;
+use panthsoni\tengxun\common\SingleValidate;
 
 class PayClient extends CommonApi
 {
@@ -212,7 +213,7 @@ class PayClient extends CommonApi
         }
 
         /*检测请求方法是否授权*/
-        if (!isset(self::$payMethodList[self::$method]) || (isset(self::$payMethodList[self::$method]) && !self::$payMethodList[self::$method])){
+        if (!isset(self::$methodList[self::$method]) || (isset(self::$methodList[self::$method]) && !self::$methodList[self::$method])){
             throw new \Exception('请求方法未授权',-10025);
         }
 
@@ -221,10 +222,10 @@ class PayClient extends CommonApi
         $requestParamsList = Tools::validate($originalRequestParamsList,new SingleValidate(),self::$method);
 
         /*组建请求链接*/
-        self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$payMethodList[self::$method]['request_uri'])?self::$payMethodList[self::$method]['request_uri']:self::$domain.self::$payMethodList[self::$method]['request_uri'];
+        self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$methodList[self::$method]['request_uri'])?self::$methodList[self::$method]['request_uri']:self::$domain.self::$methodList[self::$method]['request_uri'];
 
         /*设置是否需要证书*/
-        self::$isNeedCert = self::$payMethodList[self::$method]['is_need_cert'];
+        self::$isNeedCert = self::$methodList[self::$method]['is_need_cert'];
         if (self::$isNeedCert && (!self::$sslKeyPath || !self::$sslCertPath)){
             throw new \Exception('证书路径缺失',-10031);
         }

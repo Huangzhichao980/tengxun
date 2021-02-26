@@ -3,6 +3,7 @@ namespace panthsoni\tengxun\weixin\platform\lib;
 
 use panthsoni\tengxun\common\CommonCryption;
 use panthsoni\tengxun\common\CommonTools;
+use panthsoni\tengxun\common\SingleValidate;
 
 class Tools extends CommonTools
 {

@@ -2,6 +2,7 @@
 namespace panthsoni\tengxun\weixin\developer\lib;
 
 use panthsoni\tengxun\common\CommonApi;
+use panthsoni\tengxun\common\SingleValidate;
 
 class DeveloperClient extends CommonApi
 {
@@ -150,11 +151,11 @@ class DeveloperClient extends CommonApi
 
         /*检测请求方式是否存在*/
         if (!in_array(self::$method,self::$notRequestUrlMethods)){
-            if (!isset(self::$developerMethodList[self::$method]) || (isset(self::$developerMethodList[self::$method]) && !self::$developerMethodList[self::$method])){
+            if (!isset(self::$methodList[self::$method]) || (isset(self::$methodList[self::$method]) && !self::$methodList[self::$method])){
                 throw new \Exception('请求方法未授权',-10025);
             }
 
-            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$developerMethodList[self::$method]['request_uri'])?self::$developerMethodList[self::$method]['request_uri']:self::$domain.self::$developerMethodList[self::$method]['request_uri'];
+            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$methodList[self::$method]['request_uri'])?self::$methodList[self::$method]['request_uri']:self::$domain.self::$methodList[self::$method]['request_uri'];
         }
 
         /*参数验证*/
@@ -167,6 +168,6 @@ class DeveloperClient extends CommonApi
         /*回复用户消息*/
         if (self::$method === 'replyMessage') return Tools::replyMessage($originalRequestParamsList,self::$isSafe);
 
-        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$developerMethodList[self::$method]['request_way'],self::$isBackUrl);
+        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$methodList[self::$method]['request_way'],self::$isBackUrl);
     }
 }

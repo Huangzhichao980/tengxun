@@ -2,6 +2,7 @@
 namespace panthsoni\tengxun\weixin\mobile\lib;
 
 use panthsoni\tengxun\common\CommonApi;
+use panthsoni\tengxun\common\SingleValidate;
 
 class ApplicationClient extends CommonApi
 {
@@ -123,16 +124,16 @@ class ApplicationClient extends CommonApi
 
         /*检测请求方式是否存在*/
         if (!in_array(self::$method,self::$notRequestUrlMethods)){
-            if (!isset(self::$openMobileMethodList[self::$method]) || (isset(self::$openMobileMethodList[self::$method]) && !self::$openMobileMethodList[self::$method])){
+            if (!isset(self::$methodList[self::$method]) || (isset(self::$methodList[self::$method]) && !self::$methodList[self::$method])){
                 throw new \Exception('请求方法未授权',-10025);
             }
 
-            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$openMobileMethodList[self::$method]['request_uri'])?self::$openMobileMethodList[self::$method]['request_uri']:self::$domain.self::$openMobileMethodList[self::$method]['request_uri'];
+            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$methodList[self::$method]['request_uri'])?self::$methodList[self::$method]['request_uri']:self::$domain.self::$methodList[self::$method]['request_uri'];
         }
 
         /*参数验证*/
         $requestParamsList = Tools::validate(array_merge(self::$options,self::$params,self::$bizParams),new SingleValidate(),self::$method);
 
-        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$openMobileMethodList[self::$method]['request_way'],self::$isBackUrl);
+        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$methodList[self::$method]['request_way'],self::$isBackUrl);
     }
 }

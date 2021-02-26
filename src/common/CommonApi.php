@@ -21,6 +21,23 @@ class CommonApi
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/message/custom/typing?access_token=[access_token]'
         ],
+        'get_authorize_access_token' => [
+            'request_way' => 'GET',
+            'request_uri' => '/sns/oauth2/access_token?appid=[appid]&secret=[secret]&code=[code]&grant_type=authorization_code'
+        ],
+        'refresh_authorize_access_token' => [
+            'request_way' => 'GET',
+            'request_uri' => '/sns/oauth2/refresh_token?appid=[appid]&grant_type=refresh_token&refresh_token=[refresh_token]'
+        ],
+        'get_user_info' => [
+            'request_way' => 'GET',
+            'request_uri' => '/sns/userinfo?access_token=[access_token]&openid=[openid]&lang=[lang]'
+        ],
+        'check_auth' => [
+            'request_way' => 'GET',
+            'request_uri' => '/sns/auth?access_token=[access_token]&openid=[openid]'
+        ],
+
 
         /**
          * 小程序相关接口
@@ -87,150 +104,95 @@ class CommonApi
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/message/wxopen/template/uniform_send?access_token=[access_token]'
         ],
-    ];
-
-    /**
-     * 请求方法列表（小程序）
-     * @var array
-     */
-    protected static $appletMethodList = [
-
-
-
-
-        /**
-         * 数据分析
-         */
-
-
-        /**
-         * 客服消息
-         */
-
-
-
-
-        /**
-         * 统一服务消息
-         */
-
-
-        /**
-         * 动态消息
-         */
-        'create_activity_id' => [
+        'applet_create_activity_id' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/message/wxopen/activityid/create?access_token=[access_token]'
         ],
-        'set_update_table_msg' => [
+        'applet_set_update_table_msg' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/message/wxopen/updatablemsg/send?access_token=[access_token]'
         ],
-
-        /**
-         * 插件管理
-         */
-        'apply_plugin' => [
+        'applet_apply_plugin' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/plugin?access_token=[access_token]'
         ],
-        'get_plugin_dev_apply_list' => [
+        'applet_get_plugin_dev_apply_list' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/devplugin?access_token=[access_token]'
         ],
-        'get_plugin_list' => [
+        'applet_get_plugin_list' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/plugin?access_token=[access_token]'
         ],
-        'set_dev_plugin_apply_status' => [
+        'applet_set_dev_plugin_apply_status' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/devplugin?access_token=[access_token]'
         ],
-        'unbind_plugin' => [
+        'applet_unbind_plugin' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/plugin?access_token=[access_token]'
         ],
-
-        /**
-         * 附近小程序
-         */
-        'add_near_applet' => [
+        'applet_add_near_applet' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/addnearbypoi?access_token=[access_token]'
         ],
-        'delete_near_applet' => [
+        'applet_delete_near_applet' => [
             'request_way' => 'POST',
             'request_uri' => '/delnearbypoi?access_token=[access_token]'
         ],
-        'get_near_applet_list' => [
+        'applet_get_near_applet_list' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/getnearbypoilist?page=1&page_rows=20&access_token=[access_token]'
         ],
-        'set_show_status' => [
+        'applet_set_show_status' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/setnearbypoishowstatus?access_token=[access_token]'
         ],
-
-        /**
-         * 小程序码
-         */
-        'create_qr_code' => [
+        'applet_create_qr_code' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/wxaapp/createwxaqrcode?access_token=[access_token]'
         ],
-        'get_qr_code' => [
+        'applet_get_qr_code' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/getwxacode?access_token=[access_token]'
         ],
-        'get_qr_code_unlimited' => [
+        'applet_get_qr_code_unlimited' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/getwxacodeunlimit?access_token=[access_token]'
         ],
-
-        /**
-         * 内容安全
-         */
-        'img_sec_check' => [
+        'applet_img_sec_check' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/img_sec_check?access_token=[access_token]'
         ],
-        'media_check_async' => [
+        'applet_media_check_async' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/media_check_async?access_token=[access_token]'
         ],
-        'msg_sec_check' => [
+        'applet_msg_sec_check' => [
             'request_way' => 'POST',
             'request_uri' => '/wxa/msg_sec_check?access_token=[access_token]'
         ],
-
-        /**
-         * 广告
-         */
-        'add_user_action' => [
+        'applet_add_user_action' => [
             'request_way' => 'POST',
             'request_uri' => '/marketing/user_actions/add'
         ],
-        'add_user_action_set' => [
+        'applet_add_user_action_set' => [
             'request_way' => 'POST',
             'request_uri' => '/marketing/user_action_sets/add'
         ],
-        'get_user_action_set_reports' => [
+        'applet_get_user_action_set_reports' => [
             'request_way' => 'POST',
             'request_uri' => '/marketing/user_action_set_reports/get'
         ],
-        'get_user_action_sets' => [
+        'applet_get_user_action_sets' => [
             'request_way' => 'POST',
             'request_uri' => '/marketing/user_action_sets/get'
         ],
-    ];
 
-    /**
-     * 请求方法列表（开发者模式）
-     * @var array
-     */
-    protected static $developerMethodList = [
 
-        /*菜单*/
+        /**
+         * 开发者模式和第三方平台相关接口
+         */
         'create_menu' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/menu/create?access_token=[access_token]'
@@ -255,8 +217,6 @@ class CommonApi
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/menu/get?access_token=[access_token]'
         ],
-
-        /*客服*/
         'create_account' => [
             'request_way' => 'POST',
             'request_uri' => '/customservice/kfaccount/add?access_token=[access_token]'
@@ -277,8 +237,6 @@ class CommonApi
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/customservice/getkflist?access_token=[access_token]'
         ],
-
-        /*模板消息*/
         'set_industry' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/template/api_set_industry?access_token=[access_token]'
@@ -303,30 +261,10 @@ class CommonApi
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/message/template/send?access_token=[access_token]'
         ],
-
-        /*网页授权*/
         'user_authorize' => [
             'request_way' => 'GET',
             'request_uri' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=[appid]&redirect_uri=[redirect_uri]&response_type=code&scope=[scope]&state=[state]#wechat_redirect'
         ],
-        'get_authorize_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/oauth2/access_token?appid=[appid]&secret=[secret]&code=[code]&grant_type=authorization_code'
-        ],
-        'refresh_authorize_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/oauth2/refresh_token?appid=[appid]&grant_type=refresh_token&refresh_token=[refresh_token]'
-        ],
-        'get_user_info' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/userinfo?access_token=[access_token]&openid=[openid]&lang=[lang]'
-        ],
-        'check_auth' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/auth?access_token=[access_token]&openid=[openid]'
-        ],
-
-        /*用户管理*/
         'create_tag' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/tags/create?access_token=[access_token]'
@@ -347,8 +285,6 @@ class CommonApi
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/user/tag/get?access_token=[access_token]'
         ],
-
-        /*账号管理*/
         'qrcode_create' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/qrcode/create?access_token=[access_token]'
@@ -357,8 +293,6 @@ class CommonApi
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/shorturl?access_token=[access_token]'
         ],
-
-        /*微信小店管理*/
         'shop_goods_create' => [
             'request_way' => 'POST',
             'request_uri' => '/merchant/create?access_token=[access_token]'
@@ -447,29 +381,11 @@ class CommonApi
             'request_way' => 'POST',
             'request_uri' => '/merchant/group/getbyid?access_token=[access_token]'
         ],
-    ];
 
-    /**
-     * 请求方法列表（开放平台手机端模式）
-     * @var array
-     */
-    protected static $openMobileMethodList = [
-        'get_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/oauth2/access_token?appid=[appid]&secret=[secret]&code=[code]&grant_type=authorization_code'
-        ],
-        'refresh_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/oauth2/refresh_token?appid=[appid]&grant_type=refresh_token&refresh_token=[refresh_token]'
-        ],
-        'check_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/auth?access_token=[access_token]&openid=[openid]'
-        ],
-        'get_user_info' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/userinfo?access_token=[access_token]&openid=[openid]'
-        ],
+
+        /**
+         * 开放平台（移动端）
+         */
         'get_sdk_ticket' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/ticket/getticket?access_token=[access_token]&type=2'
@@ -478,309 +394,238 @@ class CommonApi
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/message/template/subscribe?access_token=[access_token]'
         ],
-    ];
 
-    /**
-     * 请求方法列表（开放平台第三方平台模式）
-     * @var array
-     */
-    protected static $openPlatformMethodList = [
+
+        /**
+         * 开放平台（第三方平台）
+         */
         /*获取component_token*/
         'get_component_token' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/component/api_component_token'
         ],
-
         /*获取preAuthCode*/
         'get_preauthcode' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/component/api_create_preauthcode?component_access_token=[component_access_token]'
         ],
-
         /*获取pc端授权URL*/
         'get_auth_pc_url' => [
             'request_way' => 'GET',
             'request_uri' => 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=[component_appid]&pre_auth_code=[pre_auth_code]&redirect_uri=[redirect_uri]&auth_type=[auth_type]'
         ],
-
         /*获取手机端授权URL*/
         'get_auth_mobile_url' => [
             'request_way' => 'GET',
             'request_uri' => 'https://mp.weixin.qq.com/safe/bindcomponent?action=bindcomponent&auth_type=3&no_scan=1&component_appid=[component_appid]&pre_auth_code=[pre_auth_code]&redirect_uri=[redirect_uri]&auth_type=[auth_type]#wechat_redirect'
         ],
-
         /*获取授权信息*/
         'get_query_auth' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/component/api_query_auth?component_access_token=[component_access_token]'
         ],
-
         /*获取/刷新接口调用令牌*/
         'refresh_authorizer_token' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/component/api_authorizer_token?component_access_token=[component_access_token]'
         ],
-
         /*获取授权方的帐号基本信息*/
         'get_authorizer_info' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/component/api_get_authorizer_info?component_access_token=[component_access_token]'
         ],
-
         /*获取授权方选项信息*/
         'get_authorizer_option' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/component/api_get_authorizer_option?component_access_token=[component_access_token]'
         ],
-
         /*设置授权方选项信息*/
         'set_authorizer_option' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/component/api_set_authorizer_option?component_access_token=[component_access_token]'
         ],
-
         /*拉取所有已授权的帐号信息*/
         'get_authorizer_list' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/component/api_get_authorizer_list?component_access_token=[component_access_token]'
         ],
-
         /*创建开放平台帐号并绑定公众号/小程序*/
         'create_open_account' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/open/create?access_token=[access_token]'
         ],
-
         /*绑定开放平台帐号并绑定公众号/小程序*/
         'bind_open_account' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/open/bind?access_token=[access_token]'
         ],
-
         /*解绑开放平台帐号并绑定公众号/小程序*/
         'unbind_open_account' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/open/unbind?access_token=[access_token]'
         ],
-
         /*获取开放平台帐号并绑定公众号/小程序*/
         'get_open_account' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/open/get?access_token=[access_token]'
         ],
-
         /*公众号网页授权*/
         'account_web_auth' => [
             'request_way' => 'GET',
             'request_uri' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=[appid]&redirect_uri=[redirect_uri]&response_type=code&scope=[scope]&state=[state]&component_appid=[component_appid]#wechat_redirect'
         ],
-
         /*获取网页授权access_token*/
         'get_web_auth_access_token' => [
             'request_way' => 'GET',
             'request_uri' => '/sns/oauth2/component/access_token?appid=[appid]&code=[code]&grant_type=authorization_code&component_appid=[component_appid]&component_access_token=[component_access_token]'
         ],
-
-        /*获取授权用户信息*/
-        'get_user_info' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/userinfo?access_token=[access_token]&openid=[openid]&lang=zh_CN'
-        ],
-
         /*获取用户基本信息*/
         'get_user_base_info' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/user/info?access_token=[access_token]&openid=[openid]&lang=zh_CN'
         ],
 
-        /*生成参数二维码*/
-        'qrcode_create' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/qrcode/create?access_token=[access_token]'
-        ],
 
-        /*生成参数二维码*/
-        'send_template' => [
-            'request_way' => 'POST',
-            'request_uri' => '/cgi-bin/message/template/send?access_token=[access_token]'
-        ],
-    ];
-
-    /**
-     * 请求方法列表（开放平台网站模式）
-     * @var array
-     */
-    protected static $openWebsiteMethodList = [
+        /**
+         * 开放平台（网站模式）
+         */
         'login' => [
             'request_way' => 'GET',
             'request_uri' => 'https://open.weixin.qq.com/connect/qrconnect?appid=[appid]&redirect_uri=[redirect_uri]&response_type=code&scope=snsapi_login&state=[state]#wechat_redirect'
         ],
-        'get_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/oauth2/access_token?appid=[appid]&secret=[secret]&code=[code]&grant_type=authorization_code'
-        ],
-        'refresh_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/oauth2/refresh_token?appid=[appid]&grant_type=refresh_token&refresh_token=[refresh_token]'
-        ],
-        'check_access_token' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/auth?access_token=[access_token]&openid=[openid]'
-        ],
-        'get_user_info' => [
-            'request_way' => 'GET',
-            'request_uri' => '/sns/userinfo?access_token=[access_token]&openid=[openid]'
-        ]
-    ];
 
-    /**
-     * 授权可调用的支付方法
-     * @var array
-     */
-    protected static $payMethodList = [
+        /**
+         * 微信支付
+         */
         /*扫码支付*/
         'micro_pay' => [
             'request_way' => 'POST',
             'request_uri' => '/pay/micropay',
             'is_need_cert' => false,
         ],
-
         /*统一下单接口*/
         'unified_order' => [
             'request_way' => 'POST',
             'request_uri' => '/pay/unifiedorder',
             'is_need_cert' => false,
         ],
-
         /*查询订单*/
         'order_query' => [
             'request_way' => 'POST',
             'request_uri' => '/pay/orderquery',
             'is_need_cert' => false,
         ],
-
         /*关闭订单*/
         'close_order' => [
             'request_way' => 'POST',
             'request_uri' => '/pay/closeorder',
             'is_need_cert' => false,
         ],
-
         /*企业付款*/
         'transfers' => [
             'request_way' => 'POST',
             'request_uri' => '/mmpaymkttransfers/promotion/transfers',
             'is_need_cert' => true,
-        ]
-    ];
+        ],
 
-    protected static $corporationMethodList = [
+
+        /**
+         * 企业微信
+         */
         /*获取access_token*/
         'access_token' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/gettoken?corpid=[corpid]&corpsecret=[corpsecret]'
         ],
-
         /*获取ip地址段*/
         'get_api_domain_ip' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/get_api_domain_ip?access_token=[access_token]'
         ],
-
         /*成员创建*/
         'member_create' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/user/create?access_token=[access_token]'
         ],
-
         /*成员读取*/
         'member_get' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/user/get?access_token=[access_token]&userid=[userid]'
         ],
-
         /*成员更新*/
         'member_update' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/user/update?access_token=[access_token]'
         ],
-
         /*成员删除*/
         'member_delete' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/user/delete?access_token=[access_token]&userid=[userid]'
         ],
-
         /*批量删除*/
         'member_batch_delete' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/user/batchdelete?access_token=[access_token]'
         ],
-
         /*获取部门成员*/
         'department_member_get' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/user/simplelist?access_token=[access_token]&department_id=[department_id]&fetch_child=[fetch_child]'
         ],
-
         /*获取部门成员*/
         'department_member_detail' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/user/list?access_token=[access_token]&department_id=[department_id]&fetch_child=[fetch_child]'
         ],
-
         /*userid与openid互换*/
         'convert_to_openid' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/user/convert_to_openid?access_token=[access_token]'
         ],
-
         /*二次验证*/
         'authsucc' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/user/authsucc?access_token=[access_token]&userid=[userid]'
         ],
-
         /*邀请成员*/
         'invite' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/batch/invite?access_token=[access_token]'
         ],
-
         /*获取邀请二维码*/
         'get_join_qrcode' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/corp/get_join_qrcode?access_token=[access_token]&size_type=[size_type]'
         ],
-
         /*获取企业活跃成员数*/
         'get_active_stat' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/user/get_active_stat?access_token=[access_token]'
         ],
-
         /*部门创建*/
         'department_create' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/department/create?access_token=[access_token]'
         ],
-
         /*部门创建*/
         'department_update' => [
             'request_way' => 'POST',
             'request_uri' => '/cgi-bin/department/update?access_token=[access_token]'
         ],
-
         /*部门删除*/
         'department_delete' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/department/delete?access_token=[access_token]&id=[id]'
         ],
-
         /*部门列表*/
         'department_list' => [
             'request_way' => 'GET',
             'request_uri' => '/cgi-bin/department/list?access_token=[access_token]&id=[id]'
         ],
+        /*扫码登录*/
+        'scan_login' => [
+            'request_way' => 'GET',
+            'request_uri' => '/wwopen/sso/qrConnect?appid=[appid]&agentid=[agentid]&redirect_uri=[redirect_uri]&state=[state]'
+        ]
     ];
 }

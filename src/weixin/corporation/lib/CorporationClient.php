@@ -2,6 +2,7 @@
 namespace panthsoni\tengxun\weixin\corporation\lib;
 
 use panthsoni\tengxun\common\CommonApi;
+use panthsoni\tengxun\common\SingleValidate;
 
 class CorporationClient extends CommonApi
 {
@@ -50,7 +51,7 @@ class CorporationClient extends CommonApi
      * 不需要请求URL的方法
      * @var array
      */
-    protected static $notRequestUrlMethods = ['listen','replyMessage'];
+    protected static $notRequestUrlMethods = ['listenCorporation','replyMessage'];
 
     /**
      * 是否返回链接
@@ -139,11 +140,11 @@ class CorporationClient extends CommonApi
 
         /*检测请求方式是否存在*/
         if (!in_array(self::$method,self::$notRequestUrlMethods)){
-            if (!isset(self::$corporationMethodList[self::$method]) || (isset(self::$corporationMethodList[self::$method]) && !self::$corporationMethodList[self::$method])){
+            if (!isset(self::$methodList[self::$method]) || (isset(self::$methodList[self::$method]) && !self::$methodList[self::$method])){
                 throw new \Exception('请求方法未授权',-10025);
             }
 
-            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$corporationMethodList[self::$method]['request_uri'])?self::$corporationMethodList[self::$method]['request_uri']:self::$domain.self::$corporationMethodList[self::$method]['request_uri'];
+            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$methodList[self::$method]['request_uri'])?self::$methodList[self::$method]['request_uri']:self::$domain.self::$methodList[self::$method]['request_uri'];
         }
 
         /*参数验证*/
@@ -151,11 +152,11 @@ class CorporationClient extends CommonApi
         $requestParamsList = Tools::validate($originalRequestParamsList,new SingleValidate(),self::$method);
 
         /*监听方法*/
-        if (self::$method === 'listen') return Tools::listen($requestParamsList);
+        if (self::$method === 'listenCorporation') return Tools::listen($requestParamsList);
 
         /*回复用户消息*/
         if (self::$method === 'replyMessage') return Tools::replyMessage($originalRequestParamsList,self::$isSafe);
 
-        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$corporationMethodList[self::$method]['request_way'],self::$isBackUrl);
+        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$methodList[self::$method]['request_way'],self::$isBackUrl);
     }
 }

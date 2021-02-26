@@ -2,6 +2,7 @@
 namespace panthsoni\tengxun\weixin\platform\lib;
 
 use panthsoni\tengxun\common\CommonApi;
+use panthsoni\tengxun\common\SingleValidate;
 
 class ThirdPartyPlatformClient extends CommonApi
 {
@@ -45,7 +46,7 @@ class ThirdPartyPlatformClient extends CommonApi
      * 不需要请求URL的方法
      * @var array
      */
-    protected static $notRequestUrlMethods = ['listen','listenAccount','replyMessage'];
+    protected static $notRequestUrlMethods = ['listenPlatform','listenAccount','replyPlatformMessage'];
 
     /**
      * 是否返回链接
@@ -61,7 +62,7 @@ class ThirdPartyPlatformClient extends CommonApi
     public function __construct(array $options=[]){
         /*基本配置参数*/
         self::$options = array_merge(self::$options,$options);
-        self::$openPlatformMethodList = array_merge(self::$openPlatformMethodList,self::$developerMethodList);
+        self::$methodList = array_merge(self::$methodList,self::$developerMethodList);
     }
 
     /**
@@ -127,11 +128,11 @@ class ThirdPartyPlatformClient extends CommonApi
 
         /*检测请求方式是否存在*/
         if (!in_array(self::$method,self::$notRequestUrlMethods)){
-            if (!isset(self::$openPlatformMethodList[self::$method]) || (isset(self::$openPlatformMethodList[self::$method]) && !self::$openPlatformMethodList[self::$method])){
+            if (!isset(self::$methodList[self::$method]) || (isset(self::$methodList[self::$method]) && !self::$methodList[self::$method])){
                 throw new \Exception('请求方法未授权',-10025);
             }
 
-            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$openPlatformMethodList[self::$method]['request_uri'])?self::$openPlatformMethodList[self::$method]['request_uri']:self::$domain.self::$openPlatformMethodList[self::$method]['request_uri'];
+            self::$requestUrl = preg_match('/^http(s)?:\\/\\/.+/',self::$methodList[self::$method]['request_uri'])?self::$methodList[self::$method]['request_uri']:self::$domain.self::$methodList[self::$method]['request_uri'];
         }
 
         /*参数校验*/
@@ -139,14 +140,14 @@ class ThirdPartyPlatformClient extends CommonApi
         $requestParamsList = Tools::validate($originalRequestParamsList,new SingleValidate(),self::$method);
 
         /*监听方法*/
-        if (self::$method === 'listen') return Tools::listen($requestParamsList);
+        if (self::$method === 'listenPlatform') return Tools::listen($requestParamsList);
 
         /*监听公众号*/
         if (self::$method === 'listenAccount') return Tools::listenAccount($requestParamsList);
 
         /*回复用户消息*/
-        if (self::$method === 'replyMessage') return Tools::replyMessage($originalRequestParamsList);
+        if (self::$method === 'replyPlatformMessage') return Tools::replyMessage($originalRequestParamsList);
 
-        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$openPlatformMethodList[self::$method]['request_way'],self::$isBackUrl);
+        return Tools::buildRequestResult(self::$requestUrl,$requestParamsList,self::$methodList[self::$method]['request_way'],self::$isBackUrl);
     }
 }
