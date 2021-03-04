@@ -1,6 +1,8 @@
 <?php
 namespace panthsoni\tengxun\weixin\website;
 
+use panthsoni\tengxun\weixin\website\lib\ApplicationClient;
+
 class Application
 {
     /**

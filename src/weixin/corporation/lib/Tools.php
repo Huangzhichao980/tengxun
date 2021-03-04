@@ -52,9 +52,8 @@ class Tools extends CommonTools
     /**
      * 公众号监听事件
      * @param $requestParamsList
-     * @param $isSafe
      * @return int|mixed
-     * @throws CommonException
+     * @throws \Exception
      */
     public static function listen($requestParamsList){
         /*是否首次接入*/

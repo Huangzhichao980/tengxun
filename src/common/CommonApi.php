@@ -625,7 +625,7 @@ class CommonApi
         /*扫码登录*/
         'scan_login' => [
             'request_way' => 'GET',
-            'request_uri' => '/wwopen/sso/qrConnect?appid=[appid]&agentid=[agentid]&redirect_uri=[redirect_uri]&state=[state]'
+            'request_uri' => 'https://open.work.weixin.qq.com/wwopen/sso/qrConnect?appid=[appid]&agentid=[agentid]&redirect_uri=[redirect_uri]&state=[state]'
         ]
     ];
 }

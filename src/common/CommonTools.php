@@ -30,6 +30,7 @@ class CommonTools
         'size_type' => '[size_type]',
         'id' => '[id]',
         'js_code' => '[js_code]',
+        'agentid' => '[agentid]'
     ];
 
     /**
